@@ -2,6 +2,10 @@
 
 An open source NFT sales bot for Discord.
 
+This bot was created for the [Pixelglyph](https://opensea.io/collection/pixelglyphs) Discord Server as part of the Pixelglyph DAO.
+
+![Pixelglyph](https://lh3.googleusercontent.com/ml0cfmNMyzKM9MD-_Sam4lIYKaHCf6dxiD4v3I2XJ-rfflABGteBQlDNO8g0LPvgkH6_fB22jry_me1VpCIjm0OgwumuVW_1pXnDhA=w350)
+
 This bot was inspired by [0xEssential's OpenSea Discord Bot](https://github.com/0xEssential/opensea-discord-bot). Rather than polling OpenSea APIs, this package sets up an event listener and listens to transfer events directly from the blockchain and posts to a specified channel in your Discord server. It supports ETH and WETH sales.
 
 **Creating a bot**
