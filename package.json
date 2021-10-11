@@ -1,6 +1,6 @@
 {
   "name": "discord-nft-sales-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Open source NFT sales discord bot",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,8 @@
     "web3": "^1.6.0"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "yarn build"
   },
   "engines": {
     "node": ">=16.6.0",

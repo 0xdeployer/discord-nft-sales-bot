@@ -1,11 +1,11 @@
 import { format } from "date-fns";
 import Discord, { Intents, TextChannel } from "discord.js";
 
-const discordBot = new Discord.Client({
-  intents: [Intents.FLAGS.GUILD_MESSAGES],
-});
-export const discordSetup = (): Promise<TextChannel> =>
-  new Promise<TextChannel>((resolve, reject) => {
+export const discordSetup = (): Promise<TextChannel> => {
+  const discordBot = new Discord.Client({
+    intents: [Intents.FLAGS.GUILD_MESSAGES],
+  });
+  return new Promise<TextChannel>((resolve, reject) => {
     ["DISCORD_BOT_TOKEN", "DISCORD_CHANNEL_ID"].forEach((envVar) => {
       if (!process.env[envVar]) reject(`${envVar} not set`);
     });
@@ -18,6 +18,7 @@ export const discordSetup = (): Promise<TextChannel> =>
       resolve(channel as TextChannel);
     });
   });
+};
 
 export const createMessage = (
   metadata: { name: string; image: string },
