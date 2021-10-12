@@ -65,16 +65,19 @@ async function nftSalesBot(options: Options) {
     log("Getting transaction receipt");
     const txReceipt = await web3.eth.getTransactionReceipt(res.transactionHash);
     let wethValue = new BN(0);
-    txReceipt?.logs.forEach((log) => {
+    log(txReceipt.logs);
+    txReceipt?.logs.forEach((currentLog) => {
       // check if WETH was transferred during this transaction
       if (
-        log.address.toLowerCase() == WETH_ADDRESS &&
-        log.topics[0]?.toLowerCase() ==
+        currentLog.topics[2]?.toLowerCase() ==
+          web3.utils.padLeft(res.returnValues.from, 64).toLowerCase() &&
+        currentLog.address.toLowerCase() == WETH_ADDRESS &&
+        currentLog.topics[0]?.toLowerCase() ==
           "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef".toLowerCase()
       ) {
-        wethValue = wethValue.plus(
-          web3.utils.fromWei(parseInt(log.data, 10).toFixed())
-        );
+        const v = `${parseInt(currentLog.data)}`;
+        log(`Weth value found ${v}`);
+        wethValue = wethValue.plus(web3.utils.fromWei(v));
       }
     });
     let value = new BN(web3.utils.fromWei(tx.value));
