@@ -1,20 +1,17 @@
 import { format } from "date-fns";
 import Discord, { Intents, TextChannel } from "discord.js";
 
-export const discordSetup = (): Promise<TextChannel> => {
+export const discordSetup = (
+  discordBotToken: string,
+  discordChannelId: string
+): Promise<TextChannel> => {
   const discordBot = new Discord.Client({
     intents: [Intents.FLAGS.GUILD_MESSAGES],
   });
   return new Promise<TextChannel>((resolve, reject) => {
-    ["DISCORD_BOT_TOKEN", "DISCORD_CHANNEL_ID"].forEach((envVar) => {
-      if (!process.env[envVar]) reject(`${envVar} not set`);
-    });
-
-    discordBot.login(process.env.DISCORD_BOT_TOKEN);
+    discordBot.login(discordBotToken);
     discordBot.on("ready", async () => {
-      const channel = await discordBot.channels.fetch(
-        process.env.DISCORD_CHANNEL_ID as string
-      );
+      const channel = await discordBot.channels.fetch(discordChannelId);
       resolve(channel as TextChannel);
     });
   });

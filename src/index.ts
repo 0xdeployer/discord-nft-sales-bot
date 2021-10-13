@@ -35,7 +35,10 @@ const WETH_ADDRESS = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2".toLowerCase();
 
 async function nftSalesBot(options: Options) {
   log("Setting up discord bot");
-  const channel = await discordSetup();
+  const channel = await discordSetup(
+    options.discordBotToken,
+    options.discordChannelId
+  );
   log("Setting up discord bot complete");
 
   const web3 = new Web3(
