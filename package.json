@@ -4,8 +4,8 @@
   "description": "Open source NFT sales discord bot",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:nftboi/discord-nft-sales-bot.git",
-  "author": "nftboi <ethnftboi@protonmail.com>",
+  "repository": "git@github.com:loopy-friends-nft-sales-bot",
+  "author": "pixelkevin <pixelkevinnfts@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bignumber.js": "^9.0.1",
